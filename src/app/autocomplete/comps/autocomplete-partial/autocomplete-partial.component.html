@@ -1,0 +1,24 @@
+<h3>Prioriza busca local</h3>
+<p>Essa estratégia visa reduzir o número de consultas desnecessárias a API, onde a primeira pesquisa é feita trazendo os dados da API e, conforme for incrementando a palavra, são realizadas buscas na lista salva em memória, anteriormente obtida ao consultar a API</p>
+
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<br>
+<mat-form-field>
+    <mat-label>Pesquise um nome</mat-label>
+    <input 
+        type="text"
+        placeholder="Pesquise um nome"
+        matInput
+        (input)="inputEventHandler($event)"
+        [formControl]="autoInput"
+        [matAutocomplete]="autoPanel"
+    >
+    <mat-autocomplete #autoPanel="matAutocomplete">
+        @for (option of list; track option){
+            <mat-option [value]="option">{{option}}</mat-option>
+        }
+    </mat-autocomplete>
+</mat-form-field>
+<ul>
+    <li *ngFor="let item of list">{{item}}</li>
+</ul>

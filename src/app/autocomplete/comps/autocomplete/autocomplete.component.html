@@ -1,0 +1,20 @@
+<mat-form-field>
+    <mat-label>Pesquise um nome</mat-label>
+    <input 
+        type="text"
+        placeholder="Pesquise um nome"
+        matInput
+        (input)="inputEventHandler($event)"
+        [formControl]="autoInput"
+        [matAutocomplete]="autoPanel"
+    >
+    <mat-autocomplete #autoPanel="matAutocomplete">
+        @for (option of list$ | async; track option){
+            <mat-option [value]="option">{{option}}</mat-option>
+        }
+    </mat-autocomplete>
+</mat-form-field>
+
+<ol>
+    <li *ngFor="let item of list$ | async as list">{{item}}</li>
+</ol>

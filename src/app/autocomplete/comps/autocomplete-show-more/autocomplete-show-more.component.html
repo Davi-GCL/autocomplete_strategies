@@ -1,0 +1,26 @@
+<h3>Mostrar mais</h3>
+<p></p>
+
+<mat-form-field>
+    <mat-label>Pesquise um nome</mat-label>
+    <input 
+        type="text"
+        placeholder="Pesquise um nome"
+        matInput
+        (input)="inputEventHandler($event)"
+        [formControl]="autoInput"
+        [matAutocomplete]="autoPanel"
+    >
+    <mat-autocomplete #autoPanel="matAutocomplete">
+        @for (option of list; track option){
+            <mat-option [value]="option">{{option}}</mat-option>
+        }
+        <mat-label class="show-more-option" (click)="onShowMoreOptions()" *ngIf="hasMoreOptions">
+            <button mat-button>Mostrar mais opções</button>
+        </mat-label>
+    </mat-autocomplete>
+</mat-form-field>
+
+<ol>
+    <li *ngFor="let item of list">{{item}}</li>
+</ol>
